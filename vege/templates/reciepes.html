@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block start %}
+<div class="container mt-5  ">
+<form class=" col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h1>Add Reciepe</h1>
+    <hr>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Reciepe Name</label>
+      <input type="text" class="form-control" name="reciepe_name">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Reciepe Description</label>
+      <textarea class="form-control" name="reciepe_description"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Reciepe Image</label>
+        <input type="file" class="form-control" name="reciepe_image">
+      </div>
+    <button type="submit" class="btn btn-success">Add Reciepe</button>
+  </form>
+</div>
+<div class="mt-5">
+  <form >
+  <div class=" mx-auto col-6">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Search Food</label>
+      <input   name="search"  class="form-control" >
+      
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+  </div>
+</div>
+
+<table class="table mt-5 table-striped">
+    <thead>
+      <tr>
+        <th scope="col">S.NO</th>
+        <th scope="col">Reciepe Name</th>
+        <th scope="col">Reciepe Description</th>
+        <th scope="col">Reciepe Image</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for q in queryset %}
+      <tr>
+        <td scope="row">{{forloop.counter}}</td>
+        <td>{{q.reciepe_name}}</td>
+        <td>{{q.reciepe_description}}</td>
+        <td><img src="/media/{{q.reciepe_image}}" style="height: 100px;"></td>
+        <td><a href="/delete_reciepe/{{q.id}}" class=" btn btn-danger p-1">Delete</a><br>
+          <a href="/update_reciepe/{{q.id}}" class=" btn btn-success mt-3">Update</a>
+        </td>
+      </tr>
+      {%endfor%}
+  {%endblock%}

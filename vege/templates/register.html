@@ -1,0 +1,40 @@
+{%extends "base.html"%}
+{%block start%}
+    
+    <div class="container mt-5">
+    <form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Register</h2>
+        <hr>
+        {%if messages%}
+        <div class="alert alert-primary" role="alert">
+            {%for message in messages %}
+            {{message}}
+            {%endfor%}
+          </div>
+          
+          {%endif%}
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">FirstName</label>
+            <input type="text" name="first_name" class="form-control" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">LastName</label>
+            <input type="text" name="last_name" class="form-control" >
+          </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">User Name</label>
+              <input type="text" name="username" class="form-control" >
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" name="password" class="form-control" >
+            </div>
+            <p>Already have an account <a href="/login_page/">login</a></p>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          
+      </form>
+    </div>
+    <hr>
+    
+{%endblock%}
